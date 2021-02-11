@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CardCar extends StatefulWidget {
+class CartCar extends StatefulWidget {
   @override
-  _CardCarState createState() => _CardCarState();
+  _CartCarState createState() => _CartCarState();
 }
 
-class _CardCarState extends State<CardCar> {
+class _CartCarState extends State<CartCar> {
   @override
   Widget build(BuildContext context) {
     return Card(

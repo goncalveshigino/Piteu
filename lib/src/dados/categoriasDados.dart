@@ -1,4 +1,5 @@
-import 'package:cumidas/src/models/categoriasModel.dart';
+
+import '../models/categoriasModel.dart';
 
 
 final categorias = [

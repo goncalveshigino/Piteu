@@ -1,8 +1,9 @@
-import 'package:cumidas/src/pages/card/card_page.dart';
+
+import 'package:cumidas/src/pages/cart/cart_page.dart';
 import 'package:cumidas/src/pages/category/category_page.dart';
 import 'package:cumidas/src/pages/home/home_page.dart';
 import 'package:cumidas/src/pages/product/product_page.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 
 class Tabs extends StatefulWidget {
@@ -14,7 +15,7 @@ class _TabsState extends State<Tabs> {
   int abaAtual = 0;
 
   HomePage homePage;
-  CardPage cardPage;
+  CartPage cartPage;
   ProductPage productPage;
   CategoryPage categoryPage;
 
@@ -24,11 +25,11 @@ class _TabsState extends State<Tabs> {
   @override
   void initState() {
     homePage = HomePage();
-    cardPage = CardPage();
+    cartPage = CartPage();
     productPage = ProductPage();
     categoryPage = CategoryPage();
 
-    pages = [homePage, cardPage, productPage, categoryPage];
+    pages = [homePage, cartPage, productPage, categoryPage];
     pagActual = homePage;
     super.initState();
   }
@@ -93,22 +94,22 @@ class _TabsState extends State<Tabs> {
 
               BottomNavigationBarItem(
                   icon: Icon(Icons.home,),
-                  title: const Text("Home")
+                  title: const Text("Principal")
               ),
 
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart_outlined,),
-                  title: const Text("Card")
+                  title: const Text("Carrinho")
               ),
 
               BottomNavigationBarItem(
                   icon: Icon(Icons.precision_manufacturing_sharp,),
-                  title: const Text("Product")
+                  title: const Text("Produto")
               ),
 
               BottomNavigationBarItem(
                   icon: Icon(Icons.list,),
-                  title: const Text("Category")
+                  title: const Text("Categoria")
               ),
          ],
        ),
@@ -117,6 +118,9 @@ class _TabsState extends State<Tabs> {
             //TRAZER O CONTEUDO DA HOME PAGE
          body: pagActual,
       ),
+
+
+      
     );
   }
 }
