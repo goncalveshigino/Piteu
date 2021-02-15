@@ -69,23 +69,23 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       _emailText(),
                        SizedBox(
-                         height: 10.0,
+                         height: 20.0,
                        ),
                        _passwordText(),
                        SizedBox(
-                         height: 10.0,
+                         height: 20.0,
                        )
                     ],
                   ),
                 ),
               ),
               SizedBox(
-                height: 30.0,
+                height: 20.0,
               ),
 
             Button(btnText: "Logar",),
             Divider(
-              height: 35.0,
+              height: 30.0,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
