@@ -1,5 +1,6 @@
-import 'package:cumidas/src/login/components/botao.dart';
-import 'package:cumidas/src/login/login_page.dart';
+
+import 'package:cumidas/src/pages/login/components/botao.dart';
+import 'package:cumidas/src/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -8,6 +9,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  GlobalKey<FormFieldState> _formKey =  GlobalKey<FormFieldState>();
+
   bool _toggleVisibility = true;
 
   String _name = '';
@@ -89,88 +93,85 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        backgroundColor: Colors.grey.shade100,
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0),
-          child: Form(
-            //key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image(
-                  image:AssetImage("assets/images/cadastro.png"),
-                  height: 120.0,
-                  width: 120.0,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Card(
-                  elevation: 5.0,
-                  child: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      children: <Widget>[
-                        _nameText(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _emailText(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _passwordText()
-                      ],
-                    ),
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+            
+              SizedBox(
+                height: 30.0,
+              ),
+
+              Card(
+                elevation: 5.0,
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    children: <Widget>[
+                      _nameText(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _emailText(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _passwordText()
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 20.0,
-                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
 
-                Button(btnText: "Cadastrar",),
+              Button(btnText: "Cadastrar",),
 
-                 Divider(
-                   height: 20.0,
-                 ),
+               Divider(
+                 height: 20.0,
+               ),
 
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: <Widget>[
-                     Text(
-                       "Ja possui Cadastro?",
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: <Widget>[
+                   Text(
+                     "Ja possui Cadastro?",
+                     style: TextStyle(
+                       color: Color(0xFFBDC2CB),
+                       fontWeight: FontWeight.bold,
+                       fontSize: 16.0  
+                     ),
+                   ),
+                   SizedBox( width: 10.0,),
+
+                   GestureDetector(
+                     onTap: (){
+                       Navigator.of(context).pushReplacement(MaterialPageRoute(
+                         builder: (BuildContext context) => LoginPage())
+                         );
+                     },
+                     child: const Text(
+                       "Logar",
                        style: TextStyle(
-                         color: Color(0xFFBDC2CB),
+                         color:Colors.blueAccent,
                          fontWeight: FontWeight.bold,
-                         fontSize: 16.0  
+                         fontSize: 16.0
                        ),
                      ),
-                     SizedBox( width: 10.0,),
-                     GestureDetector(
-                       onTap: (){
-                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                           builder: (BuildContext context) => LoginPage())
-                           );
-                       },
-                       child: const Text(
-                         "Logar",
-                         style: TextStyle(
-                           color:Colors.blueAccent,
-                           fontWeight: FontWeight.bold,
-                           fontSize: 16.0
-                         ),
-                       ),
-                     )
-                   ],
-                 )
-              ],
-            ),
+                   )
+
+
+                 ],
+               )
+            ],
           ),
         ),
-      )
+      ),
     );
   }
 }
