@@ -1,6 +1,8 @@
-import 'package:cumidas/src/login/components/botao.dart';
+
 import 'package:cumidas/src/register/register_page.dart';
 import 'package:flutter/material.dart';
+
+import 'components/botao.dart';
 
 class LoginPage extends StatefulWidget {
   @override
