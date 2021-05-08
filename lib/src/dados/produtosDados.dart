@@ -1,63 +1,48 @@
 import '../models/produtosModel.dart';
 
-
-class ProdutosD {
-
+class ProdutosD{
   final String id;
   final String nome;
-  final String image;
+  final String imagem;
   final String categoria;
   final double valor;
   final double desconto;
   final double avaliacoes;
 
-  const ProdutosD(
-      {
-        this.id,
+  ProdutosD(
+      {this.id,
         this.nome,
-        this.image,
+        this.imagem,
         this.categoria,
         this.valor,
         this.desconto,
-        this.avaliacoes
-      });
+        this.avaliacoes});
 
-  }
+}
 
 
 final produtos = [
+  ProdutosD(
+    id:  "1",
+    nome:  "Sanduíche Carne",
+    imagem:  "assets/imagens/01.png",
+    categoria: "Sanduíches",
+    valor: 50,
+    desconto: 3,
+    avaliacoes: 5
+  ),
+
 
   ProdutosD(
-    
-     id : "1", 
-     nome : "Sanduiche Carne",
-     image : "assets/images/01.png",
-     categoria: "Sanduiches",
-     valor: 50, 
-     desconto: 3,
-     avaliacoes:5
-     ),
+      id:  "2",
+      nome:  "Pizza Calabresa",
+      imagem:  "assets/imagens/02.png",
+      categoria: "Pizza",
+      valor: 40,
+      desconto: 3,
+      avaliacoes: 5
+  ),
 
-  ProdutosD(
-    
-     id : "2", 
-     nome : "Pizza",
-     image : "assets/images/02.png",
-     categoria: "Pizzas",
-     valor: 50, 
-     desconto: 3,
-     avaliacoes:5
-     ),
 
-  ProdutosD(
-    
-     id : "3", 
-     nome : "Salada Frutas",
-     image : "assets/images/03.png",
-     categoria: "Frutas",
-     valor: 50, 
-     desconto: 3,
-     avaliacoes:5
-     )
 
 ];

@@ -1,126 +1,132 @@
-
-import 'package:cumidas/src/pages/cart/cart_page.dart';
-import 'package:cumidas/src/pages/category/category_page.dart';
-import 'package:cumidas/src/pages/home/home_page.dart';
-import 'package:cumidas/src/pages/product/product_page.dart';
-
+import 'package:cumidas/src/pages/TelaInicial.dart';
+import 'package:cumidas/src/pages/carrinhoPage.dart';
+import 'package:cumidas/src/pages/categoriasPage.dart';
+import 'package:cumidas/src/pages/produtosPage.dart';
 import 'package:flutter/material.dart';
 
-class Tabs extends StatefulWidget {
+
+class Tabs extends StatefulWidget{
   @override
   _TabsState createState() => _TabsState();
 }
 
-class _TabsState extends State<Tabs> {
+class _TabsState extends State<Tabs>{
   int abaAtual = 0;
-
-  HomePage homePage;
-  CartPage cartPage;
-  ProductPage productPage;
-  CategoryPage categoryPage;
+  TelaInicial telaInicial;
+  carrinhoPage carrinho;
+  produtosPage produtos;
+  categoriasPage categorias;
 
   List<Widget> pages;
-  Widget pagActual;
+  Widget pagAtual;
+
 
   @override
-  void initState() {
-    homePage = HomePage();
-    cartPage = CartPage();
-    productPage = ProductPage();
-    categoryPage = CategoryPage();
+  void initState(){
+    telaInicial = TelaInicial();
+    carrinho = carrinhoPage();
+    produtos = produtosPage();
+    categorias = categoriasPage();
 
-    pages = [homePage, cartPage, productPage, categoryPage];
-    pagActual = homePage;
+    pages = [telaInicial, carrinho, produtos, categorias];
+    pagAtual = telaInicial;
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-   
+
+@override
+  Widget build(BuildContext context){
     return SafeArea(
-      child: Scaffold(
+      child:Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 124, 25, 120),
+          backgroundColor: Colors.indigo,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          title:  Text(
+          title:Text(
+            abaAtual == 0
+                ? "Página Inicial"
+                : abaAtual == 1
+                  ? "Carrinho"
+                  : abaAtual == 2 ? "Produtos" : "Categorias",
+            style:TextStyle(
+                color:Colors.white,
+                fontSize:15.0,
+                fontWeight: FontWeight.bold
+               ),
 
-            abaAtual == 0 ? "Página Inicial"
-              : abaAtual == 1 ? "Carrinho"
-              : abaAtual == 2 ? "Produtos" : "Categorias",
-
-            style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold
-            ), 
           ),
           centerTitle: true,
-          actions: <Widget>[
-             IconButton(
-                icon: Icon(
-                Icons.notifications_none,
-                color: Colors.white,
-              ),
-              onPressed: (){
 
-              },
-             ),
-             IconButton(
+          actions: <Widget>[
+            IconButton(
                 icon: Icon(
-                Icons.shopping_cart_outlined,
+                  Icons.notifications_none,
+                  // size: 30.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {}),
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
                 color: Colors.white,
               ),
-              onPressed: (){
-                
-              },
-             )
+              onPressed: () {},
+            )
+          ],
+
+        ),
+
+
+        //COLOCAR DRAWER
+
+        resizeToAvoidBottomPadding: false,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: abaAtual,
+          onTap: (index) {
+            setState(() {
+              abaAtual = index;
+              pagAtual = pages[index];
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              // ignore: deprecated_member_use
+              title: Text("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              // ignore: deprecated_member_use
+              title: Text("Carrinho"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.photo_library,
+              ),
+              title: Text("Produtos"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list,
+              ),
+              title: Text("Categoria"),
+            ),
           ],
         ),
 
-        //Add drawer
 
-       resizeToAvoidBottomPadding: false,
-       bottomNavigationBar: BottomNavigationBar(
-         currentIndex: abaAtual,
-         onTap: (index){
-           setState(() {
-             abaAtual = index;
-             pagActual = pages[index];
-           });
-         },
-         type: BottomNavigationBarType.fixed,
-         items: <BottomNavigationBarItem>[
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home,),
-                  title: const Text("Principal")
-              ),
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart_outlined,),
-                  title: const Text("Carrinho")
-              ),
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.precision_manufacturing_sharp,),
-                  title: const Text("Produto")
-              ),
-
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.list,),
-                  title: const Text("Categoria")
-              ),
-         ],
-       ),
+        //TRAZER O CONTEÚDO DA PÁGINA INICIAL HOME
+        body:pagAtual,
 
 
-            //TRAZER O CONTEUDO DA HOME PAGE
-         body: pagActual,
-      ),
-
-
-      
+      )
     );
-  }
+}
+
+
 }
